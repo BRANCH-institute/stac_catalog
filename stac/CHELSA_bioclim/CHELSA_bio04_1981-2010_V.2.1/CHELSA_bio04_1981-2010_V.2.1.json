@@ -1,0 +1,74 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [],
+  "id": "CHELSA_bio04_1981-2010_V.2.1",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          179.99985967115003,
+          -90.00013888884999
+        ],
+        [
+          179.99985967115003,
+          83.99986041515001
+        ],
+        [
+          -180.00013888885002,
+          83.99986041515001
+        ],
+        [
+          -180.00013888885002,
+          -90.00013888884999
+        ],
+        [
+          179.99985967115003,
+          -90.00013888884999
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.00013888885002,
+    -90.00013888884999,
+    179.99985967115003,
+    83.99986041515001
+  ],
+  "properties": {
+    "datetime": "1981-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "collection",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/CHELSA_bio04_1981-2010_V.2.1/CHELSA_bio04_1981-2010_V.2.1.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/johan_public/test_stac/cogs/CHELSA_bioclim/CHELSA_bio04_1981-2010_V.2.1.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "CHELSA_bioclim"
+}

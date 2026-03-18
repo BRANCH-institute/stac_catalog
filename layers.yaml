@@ -1,0 +1,185 @@
+collections:
+  climate:
+    title: Climate
+    description: Climatic variables including bioclimatic indices, temperature, and precipitation.
+    license: CC-BY-4.0
+    keywords: [climate, bioclim, temperature, precipitation]
+    providers:
+    - name: CHELSA
+      description: Climatologies at High resolution for the Earth's Land Surface Areas
+      roles: [producer, processor]
+      url: https://chelsa-climate.org
+    - name: BRANCH Institute
+      roles: [host]
+      url: https://branch-institute.org
+    layers:
+    - id: CHELSA_bio01_1981-2010_V.2.1
+      title: Bio01 — Annual Mean Temperature
+      description: Annual mean temperature at 1 km resolution, 1981–2010 climatology.
+      filepath: CHELSA_bioclim/CHELSA_bio01_1981-2010_V.2.1.tif
+      datetime: '1981-01-01'
+      doi: https://doi.org/10.1038/s41597-022-01834-9
+      thumbnail: null
+      unit: "°C"
+      scale: 0.1
+      offset: -273.15
+      datatype: int16
+    - id: CHELSA_bio02_1981-2010_V.2.1
+      title: Bio02 — Mean Diurnal Range
+      description: Mean of monthly (max temp − min temp) at 1 km resolution, 1981–2010 climatology.
+      filepath: CHELSA_bioclim/CHELSA_bio02_1981-2010_V.2.1.tif
+      datetime: '1981-01-01'
+      doi: https://doi.org/10.1038/s41597-022-01834-9
+      thumbnail: null
+      unit: "°C"
+      scale: 0.1
+      offset: 0
+      datatype: int16
+    - id: CHELSA_bio03_1981-2010_V.2.1
+      title: Bio03 — Isothermality
+      description: Isothermality (Bio02/Bio07 × 100) at 1 km resolution, 1981–2010 climatology.
+      filepath: CHELSA_bioclim/CHELSA_bio03_1981-2010_V.2.1.tif
+      datetime: '1981-01-01'
+      doi: https://doi.org/10.1038/s41597-022-01834-9
+      thumbnail: null
+      unit: "%"
+      scale: 0.1
+      offset: 0
+      datatype: int16
+    - id: CHELSA_bio04_1981-2010_V.2.1
+      title: Bio04 — Temperature Seasonality
+      description: Temperature seasonality (standard deviation × 100) at 1 km resolution, 1981–2010 climatology.
+      filepath: CHELSA_bioclim/CHELSA_bio04_1981-2010_V.2.1.tif
+      datetime: '1981-01-01'
+      doi: https://doi.org/10.1038/s41597-022-01834-9
+      thumbnail: null
+      unit: "°C × 100"
+      scale: 1
+      offset: 0
+      datatype: int32
+
+  vegetation:
+    title: Vegetation
+    description: Vegetation structure and productivity variables.
+    license: CC-BY-4.0
+    keywords: [vegetation, ndvi, evi, lai]
+    providers:
+    - name: BRANCH Institute
+      roles: [host]
+      url: https://branch-institute.org
+    layers: []
+
+  remote_sensing:
+    title: Remote Sensing
+    description: Satellite-derived spectral and structural variables.
+    license: CC-BY-4.0
+    keywords: [remote sensing, satellite, spectral]
+    providers:
+    - name: BRANCH Institute
+      roles: [host]
+      url: https://branch-institute.org
+    layers: []
+    external_collections:
+    - id: google-satellite-embedding-v1
+      title: Google Satellite Embedding V1 (Annual)
+      description: >
+        Annual satellite embeddings (64 dimensions) at 10 m resolution for 2018–2024,
+        produced by Google DeepMind. Tiles are 8192×8192 pixels per UTM zone, stored
+        as signed int8 COGs. Apply de-quantization before use:
+        ((values / 127.5) ** 2) * sign(values). Use the provided VRT files — the
+        raw TIFFs have an inverted y-axis that GDAL cannot handle correctly.
+      license: CC-BY-4.0
+      attribution: >
+        The AlphaEarth Foundations Satellite Embedding dataset is produced by
+        Google and Google DeepMind.
+      keywords: [embeddings, satellite, deep learning, annual, google, alphaearth]
+      providers:
+      - name: Google / Google DeepMind
+        roles: [producer]
+        url: https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_SATELLITE_EMBEDDING_V1_ANNUAL
+      - name: TGE Labs / AlphaEarth
+        roles: [processor, host]
+        url: https://source.coop/tge-labs/aef
+      spatial_extent: [-180, -90, 180, 90]
+      temporal_extent: ['2018-01-01', '2024-12-31']
+      stac_geoparquet_href: https://us-west-2.opendata.source.coop/tge-labs/aef/v1/annual/aef_index_stac_geoparquet.parquet
+      index_parquet_href: https://us-west-2.opendata.source.coop/tge-labs/aef/v1/annual/aef_index.parquet
+      index_gpkg_href: https://us-west-2.opendata.source.coop/tge-labs/aef/v1/annual/aef_index.gpkg
+      base_href: https://us-west-2.opendata.source.coop/tge-labs/aef/v1/annual
+      aef:channels: 64
+      aef:band_names: [A00,A01,A02,A03,A04,A05,A06,A07,A08,A09,A10,A11,A12,A13,A14,A15,
+                       A16,A17,A18,A19,A20,A21,A22,A23,A24,A25,A26,A27,A28,A29,A30,A31,
+                       A32,A33,A34,A35,A36,A37,A38,A39,A40,A41,A42,A43,A44,A45,A46,A47,
+                       A48,A49,A50,A51,A52,A53,A54,A55,A56,A57,A58,A59,A60,A61,A62,A63]
+      aef:nodata: -128
+      aef:use_vrt: true
+
+  soil_physiochemical:
+    title: Soil Physiochemical
+    description: Soil physical and chemical properties.
+    license: CC-BY-4.0
+    keywords: [soil, physiochemical, texture, pH]
+    providers:
+    - name: OpenGeoHub
+      description: OpenGeoHub Foundation
+      roles: [producer, processor]
+      url: https://opengeohub.org
+    - name: BRANCH Institute
+      roles: [host]
+      url: https://branch-institute.org
+    layers:
+    - id: soil-db-test-soc
+      title: Soil Organic Carbon
+      description: Soil organic carbon content.
+      filepath: soil-db/soil-db-test-soc.tif
+      datetime: '2000-01-01'
+      doi: null
+      thumbnail: null
+      unit: g/kg
+      scale: 0.1
+      offset: 0
+      datatype: int16
+    - id: soil-db-test-bulkdesn
+      title: Bulk Density
+      description: TODO
+      filepath: soil-db/soil-db-test-bulkdesn.tif
+      datetime: '2000-01-01'
+      doi: null
+      thumbnail: null
+      unit: TODO
+      scale: TODO
+      offset: TODO
+      datatype: TODO
+
+  anthropogenic:
+    title: Anthropogenic
+    description: Human influence and anthropogenic pressure variables.
+    license: CC-BY-4.0
+    keywords: [anthropogenic, human influence, population]
+    providers:
+    - name: BRANCH Institute
+      roles: [host]
+      url: https://branch-institute.org
+    layers: []
+
+  land_use_land_cover:
+    title: Land Use Land Cover
+    description: Land use and land cover classification variables.
+    license: CC-BY-4.0
+    keywords: [land use, land cover, lulc]
+    providers:
+    - name: BRANCH Institute
+      roles: [host]
+      url: https://branch-institute.org
+    layers: []
+
+  topography:
+    title: Topography
+    description: Topographic and terrain variables.
+    license: CC-BY-4.0
+    keywords: [topography, elevation, dem, terrain]
+    providers:
+    - name: BRANCH Institute
+      roles: [host]
+      url: https://branch-institute.org
+    layers: []

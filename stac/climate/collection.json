@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "climate",
+  "stac_version": "1.1.0",
+  "description": "Climatic variables including bioclimatic indices, temperature, and precipitation.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/climate/CHELSA_bio01_1981-2010_V.2.1/CHELSA_bio01_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/climate/CHELSA_bio02_1981-2010_V.2.1/CHELSA_bio02_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/climate/CHELSA_bio03_1981-2010_V.2.1/CHELSA_bio03_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/climate/CHELSA_bio04_1981-2010_V.2.1/CHELSA_bio04_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/climate/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "title": "Climate",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "climate",
+    "bioclim",
+    "temperature",
+    "precipitation"
+  ],
+  "providers": [
+    {
+      "name": "CHELSA",
+      "description": "Climatologies at High resolution for the Earth's Land Surface Areas",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://chelsa-climate.org"
+    },
+    {
+      "name": "BRANCH Institute",
+      "roles": [
+        "host"
+      ],
+      "url": "https://branch-institute.org"
+    }
+  ]
+}

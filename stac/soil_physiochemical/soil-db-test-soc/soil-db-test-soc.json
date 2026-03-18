@@ -1,0 +1,84 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [],
+  "id": "soil-db-test-soc",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          179.99985967115003,
+          -90.00013888884999
+        ],
+        [
+          179.99985967115003,
+          83.99986041515001
+        ],
+        [
+          -180.00013888885002,
+          83.99986041515001
+        ],
+        [
+          -180.00013888885002,
+          -90.00013888884999
+        ],
+        [
+          179.99985967115003,
+          -90.00013888884999
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.00013888885002,
+    -90.00013888884999,
+    179.99985967115003,
+    83.99986041515001
+  ],
+  "properties": {
+    "title": "Soil Organic Carbon",
+    "description": "Soil organic carbon content.",
+    "unit": "g/kg",
+    "scale": 0.1,
+    "offset": 0,
+    "datatype": "int16",
+    "datetime": "2000-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "collection",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/collection.json",
+      "type": "application/json",
+      "title": "Soil Physiochemical"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/collection.json",
+      "type": "application/json",
+      "title": "Soil Physiochemical"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/soil-db-test-soc/soil-db-test-soc.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/johan_public/test_stac/cogs/soil-db/soil-db-test-soc.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Soil Organic Carbon",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "soil_physiochemical"
+}

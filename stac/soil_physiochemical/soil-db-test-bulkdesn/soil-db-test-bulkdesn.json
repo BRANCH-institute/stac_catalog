@@ -1,0 +1,84 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [],
+  "id": "soil-db-test-bulkdesn",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          179.99985967115003,
+          -90.00013888884999
+        ],
+        [
+          179.99985967115003,
+          83.99986041515001
+        ],
+        [
+          -180.00013888885002,
+          83.99986041515001
+        ],
+        [
+          -180.00013888885002,
+          -90.00013888884999
+        ],
+        [
+          179.99985967115003,
+          -90.00013888884999
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.00013888885002,
+    -90.00013888884999,
+    179.99985967115003,
+    83.99986041515001
+  ],
+  "properties": {
+    "title": "Bulk Density",
+    "description": "TODO",
+    "unit": "TODO",
+    "scale": "TODO",
+    "offset": "TODO",
+    "datatype": "TODO",
+    "datetime": "2000-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "collection",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/collection.json",
+      "type": "application/json",
+      "title": "Soil Physiochemical"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/collection.json",
+      "type": "application/json",
+      "title": "Soil Physiochemical"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/soil-db-test-bulkdesn/soil-db-test-bulkdesn.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/johan_public/test_stac/cogs/soil-db/soil-db-test-bulkdesn.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Bulk Density",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "soil_physiochemical"
+}

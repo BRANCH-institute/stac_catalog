@@ -1,0 +1,61 @@
+{
+  "type": "Collection",
+  "id": "land_use_land_cover",
+  "stac_version": "1.1.0",
+  "description": "Land use and land cover classification variables.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/land_use_land_cover/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "title": "Land Use Land Cover",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "land use",
+    "land cover",
+    "lulc"
+  ],
+  "providers": [
+    {
+      "name": "BRANCH Institute",
+      "roles": [
+        "host"
+      ],
+      "url": "https://branch-institute.org"
+    }
+  ]
+}

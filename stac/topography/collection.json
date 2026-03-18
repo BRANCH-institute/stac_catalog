@@ -1,0 +1,62 @@
+{
+  "type": "Collection",
+  "id": "topography",
+  "stac_version": "1.1.0",
+  "description": "Topographic and terrain variables.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/topography/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "title": "Topography",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "topography",
+    "elevation",
+    "dem",
+    "terrain"
+  ],
+  "providers": [
+    {
+      "name": "BRANCH Institute",
+      "roles": [
+        "host"
+      ],
+      "url": "https://branch-institute.org"
+    }
+  ]
+}

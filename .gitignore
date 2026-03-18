@@ -1,0 +1,4 @@
+cogs/
+*.DS_Store
+sampled_points.gpkg
+working_plan_stac_gcs.md

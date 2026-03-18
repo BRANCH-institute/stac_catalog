@@ -1,0 +1,61 @@
+{
+  "type": "Collection",
+  "id": "anthropogenic",
+  "stac_version": "1.1.0",
+  "description": "Human influence and anthropogenic pressure variables.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/anthropogenic/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "title": "Anthropogenic",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "anthropogenic",
+    "human influence",
+    "population"
+  ],
+  "providers": [
+    {
+      "name": "BRANCH Institute",
+      "roles": [
+        "host"
+      ],
+      "url": "https://branch-institute.org"
+    }
+  ]
+}

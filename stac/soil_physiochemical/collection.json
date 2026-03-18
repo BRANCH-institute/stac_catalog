@@ -1,0 +1,81 @@
+{
+  "type": "Collection",
+  "id": "soil_physiochemical",
+  "stac_version": "1.1.0",
+  "description": "Soil physical and chemical properties.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/soil-db-test-soc/soil-db-test-soc.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/soil-db-test-bulkdesn/soil-db-test-bulkdesn.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "title": "Soil Physiochemical",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "soil",
+    "physiochemical",
+    "texture",
+    "pH"
+  ],
+  "providers": [
+    {
+      "name": "OpenGeoHub",
+      "description": "OpenGeoHub Foundation",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://opengeohub.org"
+    },
+    {
+      "name": "BRANCH Institute",
+      "roles": [
+        "host"
+      ],
+      "url": "https://branch-institute.org"
+    }
+  ]
+}

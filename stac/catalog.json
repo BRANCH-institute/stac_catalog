@@ -1,0 +1,62 @@
+{
+  "type": "Catalog",
+  "id": "my-raster-stack",
+  "stac_version": "1.1.0",
+  "description": "Global environmental raster data products",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/climate/collection.json",
+      "type": "application/json",
+      "title": "Climate"
+    },
+    {
+      "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/vegetation/collection.json",
+      "type": "application/json",
+      "title": "Vegetation"
+    },
+    {
+      "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/remote_sensing/collection.json",
+      "type": "application/json",
+      "title": "Remote Sensing"
+    },
+    {
+      "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/collection.json",
+      "type": "application/json",
+      "title": "Soil Physiochemical"
+    },
+    {
+      "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/anthropogenic/collection.json",
+      "type": "application/json",
+      "title": "Anthropogenic"
+    },
+    {
+      "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/land_use_land_cover/collection.json",
+      "type": "application/json",
+      "title": "Land Use Land Cover"
+    },
+    {
+      "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/topography/collection.json",
+      "type": "application/json",
+      "title": "Topography"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json"
+    }
+  ],
+  "title": "Global Environmental Layers"
+}

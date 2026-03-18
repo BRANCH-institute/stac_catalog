@@ -1,0 +1,64 @@
+{
+  "type": "Collection",
+  "id": "CHELSA_bioclim",
+  "stac_version": "1.1.0",
+  "description": "CHELSA bioclimatic variables 1981-2010 V.2.1",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/CHELSA_bio01_1981-2010_V.2.1/CHELSA_bio01_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/CHELSA_bio02_1981-2010_V.2.1/CHELSA_bio02_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/CHELSA_bio03_1981-2010_V.2.1/CHELSA_bio03_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/CHELSA_bio04_1981-2010_V.2.1/CHELSA_bio04_1981-2010_V.2.1.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/CHELSA_bioclim/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1981-01-01T00:00:00Z",
+          "2010-12-31T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other"
+}

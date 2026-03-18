@@ -1,9 +1,15 @@
+import yaml
 import pystac
 import rasterio
-from datetime import datetime
+from datetime import datetime, timezone
 from shapely.geometry import box, mapping
 
 BUCKET = "https://storage.googleapis.com/johan_public/test_stac"
+LAYERS_FILE = "layers.yaml"
+
+# --- Load layer definitions ---
+with open(LAYERS_FILE) as f:
+    config = yaml.safe_load(f)
 
 # --- Catalog ---
 catalog = pystac.Catalog(
@@ -12,215 +18,148 @@ catalog = pystac.Catalog(
     description="Global environmental raster data products"
 )
 
-# --- Collection definitions ---
-# Keys match collection_id used in LAYERS below
-COLLECTION_DEFS = {
-    "climate": {
-        "title": "Climate",
-        "description": "Climatic variables including bioclimatic indices, temperature, and precipitation.",
-        "license": "CC-BY-4.0",
-        "keywords": ["climate", "bioclim", "temperature", "precipitation"],
-        "providers": [
-            pystac.Provider(
-                name="CHELSA",
-                description="Climatologies at High resolution for the Earth's Land Surface Areas",
-                roles=["producer", "processor"],
-                url="https://chelsa-climate.org"
-            ),
-            pystac.Provider(
-                name="BRANCH Institute",
-                roles=["host"],
-                url="https://branch-institute.org"
-            ),
-        ],
-    },
-    "vegetation": {
-        "title": "Vegetation",
-        "description": "Vegetation structure and productivity variables.",
-        "license": "CC-BY-4.0",
-        "keywords": ["vegetation", "ndvi", "evi", "lai"],
-        "providers": [
-            pystac.Provider(
-                name="BRANCH Institute",
-                roles=["host"],
-                url="https://branch-institute.org"
-            ),
-        ],
-    },
-    "remote_sensing": {
-        "title": "Remote Sensing",
-        "description": "Satellite-derived spectral and structural variables.",
-        "license": "CC-BY-4.0",
-        "keywords": ["remote sensing", "satellite", "spectral"],
-        "providers": [
-            pystac.Provider(
-                name="BRANCH Institute",
-                roles=["host"],
-                url="https://branch-institute.org"
-            ),
-        ],
-    },
-    "soil_physiochemical": {
-        "title": "Soil Physiochemical",
-        "description": "Soil physical and chemical properties.",
-        "license": "CC-BY-4.0",
-        "keywords": ["soil", "physiochemical", "texture", "pH"],
-        "providers": [
-            pystac.Provider(
-                name="BRANCH Institute",
-                roles=["host"],
-                url="https://branch-institute.org"
-            ),
-        ],
-    },
-    "anthropogenic": {
-        "title": "Anthropogenic",
-        "description": "Human influence and anthropogenic pressure variables.",
-        "license": "CC-BY-4.0",
-        "keywords": ["anthropogenic", "human influence", "population"],
-        "providers": [
-            pystac.Provider(
-                name="BRANCH Institute",
-                roles=["host"],
-                url="https://branch-institute.org"
-            ),
-        ],
-    },
-    "land_use_land_cover": {
-        "title": "Land Use Land Cover",
-        "description": "Land use and land cover classification variables.",
-        "license": "CC-BY-4.0",
-        "keywords": ["land use", "land cover", "lulc"],
-        "providers": [
-            pystac.Provider(
-                name="BRANCH Institute",
-                roles=["host"],
-                url="https://branch-institute.org"
-            ),
-        ],
-    },
-    "topography": {
-        "title": "Topography",
-        "description": "Topographic and terrain variables.",
-        "license": "CC-BY-4.0",
-        "keywords": ["topography", "elevation", "dem", "terrain"],
-        "providers": [
-            pystac.Provider(
-                name="BRANCH Institute",
-                roles=["host"],
-                url="https://branch-institute.org"
-            ),
-        ],
-    },
-}
+# --- Build collections and items ---
+for cid, meta in config["collections"].items():
+    providers = [
+        pystac.Provider(
+            name=p["name"],
+            description=p.get("description"),
+            roles=p["roles"],
+            url=p.get("url")
+        )
+        for p in meta.get("providers", [])
+    ]
 
-COLLECTIONS = {}
-for cid, meta in COLLECTION_DEFS.items():
     collection = pystac.Collection(
         id=cid,
         title=meta["title"],
         description=meta["description"],
         license=meta["license"],
-        keywords=meta["keywords"],
-        providers=meta["providers"],
+        keywords=meta.get("keywords", []),
+        providers=providers,
         extent=pystac.Extent(
             spatial=pystac.SpatialExtent(bboxes=[[-180, -90, 180, 90]]),
             temporal=pystac.TemporalExtent(intervals=[[None, None]])
         )
     )
     catalog.add_child(collection)
-    COLLECTIONS[cid] = collection
 
-# --- Layer definitions ---
-# filepath: path under cogs/ on GCS
-# collection_id: must match a key in COLLECTION_DEFS
-# title: human-readable name shown in STAC Browser
-# description: what the layer represents
-# datetime: representative date for the layer
-# doi: optional DOI URL
-# thumbnail: optional filename under thumbnails/ on GCS (None if not available)
-LAYERS = [
-    {
-        "filepath": "CHELSA_bioclim/CHELSA_bio01_1981-2010_V.2.1.tif",
-        "collection_id": "climate",
-        "title": "CHELSA Bio01 — Annual Mean Temperature (1981–2010)",
-        "description": "Annual mean temperature [°C × 10] at 1 km resolution, 1981–2010 climatology.",
-        "datetime": datetime(1981, 1, 1),
-        "doi": "https://doi.org/10.1038/s41597-022-01834-9",
-        "thumbnail": None,
-    },
-    {
-        "filepath": "CHELSA_bioclim/CHELSA_bio02_1981-2010_V.2.1.tif",
-        "collection_id": "climate",
-        "title": "CHELSA Bio02 — Mean Diurnal Range (1981–2010)",
-        "description": "Mean of monthly (max temp − min temp) [°C × 10] at 1 km resolution, 1981–2010 climatology.",
-        "datetime": datetime(1981, 1, 1),
-        "doi": "https://doi.org/10.1038/s41597-022-01834-9",
-        "thumbnail": None,
-    },
-    {
-        "filepath": "CHELSA_bioclim/CHELSA_bio03_1981-2010_V.2.1.tif",
-        "collection_id": "climate",
-        "title": "CHELSA Bio03 — Isothermality (1981–2010)",
-        "description": "Isothermality (Bio02/Bio07 × 100) at 1 km resolution, 1981–2010 climatology.",
-        "datetime": datetime(1981, 1, 1),
-        "doi": "https://doi.org/10.1038/s41597-022-01834-9",
-        "thumbnail": None,
-    },
-    {
-        "filepath": "CHELSA_bioclim/CHELSA_bio04_1981-2010_V.2.1.tif",
-        "collection_id": "climate",
-        "title": "CHELSA Bio04 — Temperature Seasonality (1981–2010)",
-        "description": "Temperature seasonality (standard deviation × 100) at 1 km resolution, 1981–2010 climatology.",
-        "datetime": datetime(1981, 1, 1),
-        "doi": "https://doi.org/10.1038/s41597-022-01834-9",
-        "thumbnail": None,
-    },
-]
+    for layer in meta.get("layers", []):
+        href = layer.get("href") or f"{BUCKET}/cogs/{layer['filepath']}"
 
-for layer in LAYERS:
-    filepath = layer["filepath"]
-    filename = filepath.split("/")[-1]
-    name = filename.removesuffix(".tif")
-    href = f"{BUCKET}/cogs/{filepath}"
+        if layer.get("bbox"):
+            bbox = layer["bbox"]
+            geom = mapping(box(*bbox))
+        else:
+            with rasterio.open(href) as src:
+                bounds = src.bounds
+                bbox = [bounds.left, bounds.bottom, bounds.right, bounds.top]
+                geom = mapping(box(*bbox))
 
-    with rasterio.open(href) as src:
-        bounds = src.bounds
-        bbox = [bounds.left, bounds.bottom, bounds.right, bounds.top]
-        geom = mapping(box(*bbox))
+        item_datetime = datetime.fromisoformat(layer["datetime"]).replace(tzinfo=timezone.utc)
 
-    extra_fields = {"description": layer["description"]}
-    if layer.get("doi"):
-        extra_fields["sci:doi"] = layer["doi"]
+        extra_fields = {"description": layer["description"]}
+        if layer.get("doi"):
+            extra_fields["sci:doi"] = layer["doi"]
+        for field in ("unit", "scale", "offset", "datatype"):
+            if layer.get(field) is not None:
+                extra_fields[field] = layer[field]
 
-    item = pystac.Item(
-        id=name,
-        geometry=geom,
-        bbox=bbox,
-        datetime=layer["datetime"],
-        properties={"title": layer["title"], **extra_fields}
-    )
-    item.add_asset(
-        "data",
-        pystac.Asset(
-            href=href,
-            title=layer["title"],
-            media_type=pystac.MediaType.COG,
-            roles=["data"]
+        item = pystac.Item(
+            id=layer["id"],
+            geometry=geom,
+            bbox=bbox,
+            datetime=item_datetime,
+            properties={"title": layer["title"], **extra_fields}
         )
-    )
-    if layer.get("thumbnail"):
         item.add_asset(
-            "thumbnail",
+            "data",
             pystac.Asset(
-                href=f"{BUCKET}/thumbnails/{layer['thumbnail']}",
-                media_type="image/png",
-                roles=["thumbnail"]
+                href=href,
+                title=layer["title"],
+                media_type=pystac.MediaType.COG,
+                roles=["data"]
             )
         )
+        if layer.get("thumbnail"):
+            thumb = layer["thumbnail"]
+            thumb_href = thumb if thumb.startswith("http") else f"{BUCKET}/thumbnails/{thumb}"
+            item.add_asset(
+                "thumbnail",
+                pystac.Asset(
+                    href=thumb_href,
+                    media_type="image/png",
+                    roles=["thumbnail"]
+                )
+            )
+        collection.add_item(item)
 
-    COLLECTIONS[layer["collection_id"]].add_item(item)
+    # --- External indexed sub-collections (e.g. tiled datasets with a GeoParquet index) ---
+    for ext in meta.get("external_collections", []):
+        ext_providers = [
+            pystac.Provider(
+                name=p["name"],
+                description=p.get("description"),
+                roles=p["roles"],
+                url=p.get("url")
+            )
+            for p in ext.get("providers", [])
+        ]
+
+        start = datetime.fromisoformat(ext["temporal_extent"][0]).replace(tzinfo=timezone.utc)
+        end = datetime.fromisoformat(ext["temporal_extent"][1]).replace(tzinfo=timezone.utc)
+
+        # Collect any aef: prefixed extra fields
+        extra_fields = {}
+        for key, val in ext.items():
+            if key.startswith("aef:"):
+                extra_fields[key] = val
+        if ext.get("attribution"):
+            extra_fields["attribution"] = ext["attribution"]
+
+        ext_collection = pystac.Collection(
+            id=ext["id"],
+            title=ext["title"],
+            description=ext["description"],
+            license=ext["license"],
+            keywords=ext.get("keywords", []),
+            providers=ext_providers,
+            extent=pystac.Extent(
+                spatial=pystac.SpatialExtent(bboxes=[ext["spatial_extent"]]),
+                temporal=pystac.TemporalExtent(intervals=[[start, end]])
+            ),
+            extra_fields=extra_fields
+        )
+
+        # Link to STAC GeoParquet (standard way to reference a tiled item index)
+        ext_collection.add_link(pystac.Link(
+            rel="items",
+            target=ext["stac_geoparquet_href"],
+            media_type="application/vnd.apache.parquet",
+            extra_fields={"title": "STAC GeoParquet index"}
+        ))
+
+        # Assets: spatial indices and base tile location
+        ext_collection.add_asset("index_parquet", pystac.Asset(
+            href=ext["index_parquet_href"],
+            title="Spatial index (GeoParquet)",
+            media_type="application/vnd.apache.parquet",
+            roles=["metadata"]
+        ))
+        ext_collection.add_asset("index_gpkg", pystac.Asset(
+            href=ext["index_gpkg_href"],
+            title="Spatial index (GeoPackage)",
+            media_type="application/geopackage+sqlite3",
+            roles=["metadata"]
+        ))
+
+        collection.add_child(ext_collection)
 
 # --- Save ---
 catalog.normalize_hrefs(f"{BUCKET}/stac")
 catalog.save(catalog_type=pystac.CatalogType.ABSOLUTE_PUBLISHED, dest_href="./stac")
+
+print("STAC catalog written to ./stac/")
+print("\nNext steps:")
+print("  1. Upload COGs:    gcloud storage cp -r cogs/* gs://johan_public/test_stac/cogs/")
+print("  2. Upload catalog: gcloud storage cp -r stac/* gs://johan_public/test_stac/stac/ --cache-control='no-cache, no-store, must-revalidate'")

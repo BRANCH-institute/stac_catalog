@@ -1,0 +1,166 @@
+{
+  "type": "Collection",
+  "id": "google-satellite-embedding-v1",
+  "stac_version": "1.1.0",
+  "description": "Annual satellite embeddings (64 dimensions) at 10 m resolution for 2018\u20132024, produced by Google DeepMind. Tiles are 8192\u00d78192 pixels per UTM zone, stored as signed int8 COGs. Apply de-quantization before use: ((values / 127.5) ** 2) * sign(values). Use the provided VRT files \u2014 the raw TIFFs have an inverted y-axis that GDAL cannot handle correctly.\n",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/catalog.json",
+      "type": "application/json",
+      "title": "Global Environmental Layers"
+    },
+    {
+      "rel": "items",
+      "href": "https://us-west-2.opendata.source.coop/tge-labs/aef/v1/annual/aef_index_stac_geoparquet.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "STAC GeoParquet index"
+    },
+    {
+      "rel": "parent",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/remote_sensing/collection.json",
+      "type": "application/json",
+      "title": "Remote Sensing"
+    },
+    {
+      "rel": "self",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/remote_sensing/google-satellite-embedding-v1/collection.json",
+      "type": "application/json"
+    }
+  ],
+  "aef:channels": 64,
+  "aef:band_names": [
+    "A00",
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "A06",
+    "A07",
+    "A08",
+    "A09",
+    "A10",
+    "A11",
+    "A12",
+    "A13",
+    "A14",
+    "A15",
+    "A16",
+    "A17",
+    "A18",
+    "A19",
+    "A20",
+    "A21",
+    "A22",
+    "A23",
+    "A24",
+    "A25",
+    "A26",
+    "A27",
+    "A28",
+    "A29",
+    "A30",
+    "A31",
+    "A32",
+    "A33",
+    "A34",
+    "A35",
+    "A36",
+    "A37",
+    "A38",
+    "A39",
+    "A40",
+    "A41",
+    "A42",
+    "A43",
+    "A44",
+    "A45",
+    "A46",
+    "A47",
+    "A48",
+    "A49",
+    "A50",
+    "A51",
+    "A52",
+    "A53",
+    "A54",
+    "A55",
+    "A56",
+    "A57",
+    "A58",
+    "A59",
+    "A60",
+    "A61",
+    "A62",
+    "A63"
+  ],
+  "aef:nodata": -128,
+  "aef:use_vrt": true,
+  "attribution": "The AlphaEarth Foundations Satellite Embedding dataset is produced by Google and Google DeepMind.\n",
+  "title": "Google Satellite Embedding V1 (Annual)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2024-12-31T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "embeddings",
+    "satellite",
+    "deep learning",
+    "annual",
+    "google",
+    "alphaearth"
+  ],
+  "providers": [
+    {
+      "name": "Google / Google DeepMind",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://developers.google.com/earth-engine/datasets/catalog/GOOGLE_SATELLITE_EMBEDDING_V1_ANNUAL"
+    },
+    {
+      "name": "TGE Labs / AlphaEarth",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://source.coop/tge-labs/aef"
+    }
+  ],
+  "assets": {
+    "index_parquet": {
+      "href": "https://us-west-2.opendata.source.coop/tge-labs/aef/v1/annual/aef_index.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Spatial index (GeoParquet)",
+      "roles": [
+        "metadata"
+      ]
+    },
+    "index_gpkg": {
+      "href": "https://us-west-2.opendata.source.coop/tge-labs/aef/v1/annual/aef_index.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "title": "Spatial index (GeoPackage)",
+      "roles": [
+        "metadata"
+      ]
+    }
+  }
+}
