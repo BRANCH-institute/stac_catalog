@@ -30,6 +30,12 @@
     },
     {
       "rel": "child",
+      "href": "https://storage.googleapis.com/johan_public/test_stac/stac/google-satellite-embedding-v1/collection.json",
+      "type": "application/json",
+      "title": "Google Satellite Embedding V1 (Annual)"
+    },
+    {
+      "rel": "child",
       "href": "https://storage.googleapis.com/johan_public/test_stac/stac/soil_physiochemical/collection.json",
       "type": "application/json",
       "title": "Soil Physiochemical"

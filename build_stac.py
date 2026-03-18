@@ -153,7 +153,7 @@ for cid, meta in config["collections"].items():
             roles=["metadata"]
         ))
 
-        collection.add_child(ext_collection)
+        catalog.add_child(ext_collection)
 
 # --- Save ---
 catalog.normalize_hrefs(f"{BUCKET}/stac")
